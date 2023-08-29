@@ -8,14 +8,14 @@ use App\Http\Controllers\LogoutController;
 use App\Http\Controllers\RegisterationController;
 use App\Http\Controllers\AddDataController;
 use App\Http\Controllers\UserBuyController;
-use App\Http\Middleware\isAdmin;
+use App\Http\Middleware\IsAdmin;
 
 Route::middleware('auth')->group(function() {
   Route::get('/', [HomeController::class, 'home']);
   Route::get('/', [HomeController::class, 'show']);
   Route::post('/logout', LogoutController::class)->name('logout');
-  Route::get('/add', [AddDataController::class, 'create']);
-  Route::post('/add', [AddDataController::class, 'store']);
+  Route::get('/add', [AddDataController::class, 'create'])->middleware('admin');
+  Route::post('/add', [AddDataController::class, 'store'])->middleware('admin');
   Route::get('/dashboard', [HomeController::class, 'dashboard'])->middleware('admin');
   Route::get('buy/{id}/confirmation', [UserBuyController::class, 'create']);
 });
