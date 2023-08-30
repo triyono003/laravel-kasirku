@@ -7,8 +7,10 @@
   <title>Document</title>
 </head>
 <body>
+  <span>@include('layouts.backToHome')</span>
   <h2>konfirmasi pembayaran</h2>
   <ul>
+
     <li>
       nama :  {{ $barang->nama_barang }}
     </li>
@@ -21,12 +23,11 @@
 
   </ul>
   <br> <br>
-  @foreach( $uang as $data )
-  uang admin : {{ number_format($data->uang,0,',','.') }}
-  @endforeach
+ 
   <br> <br>
-
-
+@foreach( $uang as $data )
+uang admin : {{ $data->uang }}
+@endforeach
 
 
   <br> <br>
@@ -34,7 +35,7 @@
     @csrf
     <label for="userinput">
       masukan uang
-      <input type="number"name="userinput"value="{{$barang->harga_barang}}">
+      <input type="number"name="userinput"value="0">
     </label> <br>
     <label for="admininput">
       kembalian

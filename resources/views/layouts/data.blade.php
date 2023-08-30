@@ -16,7 +16,7 @@
     <td>{{ $data->stok_barang }}</td>
     <td>{{ number_format($data->harga_barang, 0,',','.') }}</td>
     <td>{{ $data->detail_barang }}</td>
-    <td><a href="buy/{{$data->id}}/confirmation">beli</a></td>
-  </tr>
+    <td><a href="buy/{{$data->kode_barang}}/confirmation">beli</a></td>
   @endforeach
+  </tr>
 </table>

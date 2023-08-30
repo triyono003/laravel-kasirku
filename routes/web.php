@@ -15,8 +15,8 @@ Route::middleware('auth')->group(function() {
   Route::get('/', [HomeController::class, 'home']);
   Route::get('/', [HomeController::class, 'show']);
   Route::post('/logout', LogoutController::class)->name('logout');
-  Route::get('buy/{id}/confirmation', [UserBuyController::class, 'create']);
-  Route::post('/buy/{id}/confirmation', [UserBuyController::class, 'store']);
+  Route::get('buy/{barang}/confirmation', [UserBuyController::class, 'create']);
+  Route::post('/buy/{barang}/confirmation', [UserBuyController::class, 'store']);
 });
 
 Route::middleware('admin')->group(function() {
@@ -24,6 +24,7 @@ Route::middleware('admin')->group(function() {
   Route::post('/add', [AddDataController::class, 'store'])->middleware('admin');
   Route::get('/dashboard', [HomeController::class, 'dashboard']);
   Route::get('/buy/history', [DataTransactionController::class, 'history']);
+  Route::get('/buy/history-page2', [DataTransactionController::class, 'historyPage2']);
 });
 
 Route::middleware('guest')->group(function() {

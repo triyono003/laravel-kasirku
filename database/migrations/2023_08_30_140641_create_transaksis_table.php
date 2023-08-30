@@ -13,8 +13,9 @@ return new class extends Migration
   {
     Schema::create('transaksis', function (Blueprint $table) {
       $table->id();
+      $table->string('id_transaksi',15)->default('POO'.Str::random(4) . now()->format('Ymd'));
       $table->string('name');
-      $table->string('id_barang');
+      $table->string('kode_barang');
       $table->string('nama_barang');
       $table->string('harga_barang');
       $table->string('detail_barang');

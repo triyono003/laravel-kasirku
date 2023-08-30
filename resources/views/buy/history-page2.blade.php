@@ -1,9 +1,9 @@
 <div id="container">
-  @include('layouts.backToHome')
+    @include('layouts.backToHome')
   <h3>history transaksi</h3>
   <ul>
     @foreach( $dataTransaksi as $data )
-    <li>No : {{ $data->id  }}</li>
+    <li>id : {{ $data->id  }}</li>
     <li>nama pembeli :{{ $data->name  }}</li>
     <li>kode barang : {{ $data->kode_barang  }}</li>
     <li>id transaksi : {{ $data->id_transaksi  }}</li>
@@ -16,6 +16,6 @@
     <br>
     @endforeach
   </ul>
-   @include('layouts.history-page')
+  @include('layouts.history-page')
   <br>
 </div>

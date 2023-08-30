@@ -13,15 +13,14 @@ use App\Http\Controllers\Auth;
 
 class UserBuyController extends Controller
 {
-  public function create($id) {
-    $barang = Barang::find($id);
+  public function create(Barang $barang) {
     $uang = Uang::orderBy('id', 'desc')->get();
     return view('buy.confirmation', [
       "barang" => $barang,
       "uang" => $uang,
     ]);
   }
-  public function store(Request $request, $id) {
+  public function store(Request $request, Barang $barang) {
     $uangAdminModel = Uang::first();
     $uangAdmin = $uangAdminModel->uang;
 
@@ -30,25 +29,24 @@ class UserBuyController extends Controller
 
     $tambah = $uangAdmin + $inputUser;
     $total = $tambah - $inputAdmin;
-    Uanguser::create([
+    $uanguser = Uanguser::create([
       'uangadmin' => $uangAdmin,
       'userinput' => $inputUser,
       'admininput' => $inputAdmin,
       'total' => $total,
     ]);
     $uangAdminModel->update(['uang' => $total]);
-    $barang = Barang::find($id);
-    $uang = Uanguser::find($id);
+
     $user = Auth()->user()->name;
 
-    Transaksi::create([
+    $cek = Transaksi::create([
       'name' => $user,
-      'id_barang' => $barang->id,
+      'kode_barang' => $barang->kode_barang,
       'nama_barang' => $barang->nama_barang,
       'harga_barang' => $barang->harga_barang,
       'detail_barang' => $barang->detail_barang,
-      'dibayar' => $uang->userinput,
-      'waktu_transaksi' => $uang->created_at,
+      'dibayar' => $uanguser->userinput,
+      'waktu_transaksi' => $uanguser->created_at,
     ]);
     return back();
   }

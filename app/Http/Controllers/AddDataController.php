@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Barang;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 
 class AddDataController extends Controller
 {
@@ -21,6 +22,7 @@ class AddDataController extends Controller
     ]);
 
     Barang::create([
+      'kode_barang' => Str::random(10),
       'nama_barang' => $request->nama_barang,
       'stok_barang' => $request->stok_barang,
       'harga_barang' => $request->harga_barang,

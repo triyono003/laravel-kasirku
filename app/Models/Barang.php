@@ -10,9 +10,15 @@ class Barang extends Model
     use HasFactory;
     
     protected $fillable = [
+        'kode_barang',
         'nama_barang',
         'stok_barang',
         'harga_barang',
         'detail_barang',
       ];
+   
+   public function getRouteKeyName()
+   {
+     return "kode_barang";
+   }
 }
