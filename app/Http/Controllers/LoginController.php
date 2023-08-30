@@ -10,22 +10,20 @@ use Illuminate\Validation\ValidationException;
 
 class LoginController extends Controller
 {
-   public function login()
-   {
-     return view('auth.login');
-   }
-   public function store(Request $request)
-   {
-     $attributes = $request->validate([
-       'username' => ['required'],
-       'password' => ['required'],
-      ]);
-      if(Auth::attempt($attributes)){
-        return redirect(RouteServiceProvider::HOME);
-     }
-      
-      throw ValidationException::withMessages([
-          'username' => 'username mboten ono',
-       ]);
-   }
+  public function login() {
+    return view('auth.login');
+  }
+  public function store(Request $request) {
+    $attributes = $request->validate([
+      'username' => ['required'],
+      'password' => ['required'],
+    ]);
+    if (Auth::attempt($attributes)) {
+      return redirect(RouteServiceProvider::HOME);
+    }
+
+    throw ValidationException::withMessages([
+      'username' => 'username mboten ono',
+    ]);
+  }
 }

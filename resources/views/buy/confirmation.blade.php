@@ -8,17 +8,40 @@
 </head>
 <body>
   <h2>konfirmasi pembayaran</h2>
- <ul>
-   <li>
-   nama :  {{ $barang->nama_barang }}
-   </li>
-   <li>
-   harga : {{ $barang->harga_barang }}
-   </li>
- </ul>
- <form action="" method="post">
-   @csrf
-   <input type="text">
- </form>
+  <ul>
+    <li>
+      nama :  {{ $barang->nama_barang }}
+    </li>
+    <li>
+      harga : {{ $barang->harga_barang }}
+    </li>
+    <li>
+      detail : {{ $barang->detail_barang }}
+    </li>
+
+  </ul>
+  <br> <br>
+  @foreach( $uang as $data )
+  uang admin : {{ number_format($data->uang,0,',','.') }}
+  @endforeach
+  <br> <br>
+
+
+
+
+  <br> <br>
+  <form action="" method="post">
+    @csrf
+    <label for="userinput">
+      masukan uang
+      <input type="number"name="userinput"value="{{$barang->harga_barang}}">
+    </label> <br>
+    <label for="admininput">
+      kembalian
+      <input type="number"name="admininput"value="0">
+    </label> <br>
+    <button type="submit">simpan</button>
+  </form>
+  <br> <br>
 </body>
 </html>
